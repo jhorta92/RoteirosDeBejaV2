@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="pt.ipbeja.estig.twdm.pdm1.RoteirosDeBeja">
 
 
@@ -11,7 +12,8 @@
         android:label="Roteiros De Beja"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:label">
         <activity android:name="pt.ipbeja.estig.twdm.pdm1.RoteirosDeBeja.DetailsActivity" />
         <activity android:name="pt.ipbeja.estig.twdm.pdm1.RoteirosDeBeja.MainActivity"/>
         <activity android:name=".SplashActivity">
