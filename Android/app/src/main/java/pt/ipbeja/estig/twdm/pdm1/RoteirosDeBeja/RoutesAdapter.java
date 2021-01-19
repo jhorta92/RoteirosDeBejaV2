@@ -64,7 +64,7 @@ public class RoutesAdapter extends BaseAdapter {
         } else {
             imageViewFav.setVisibility(View.INVISIBLE);
         }
-        
+
         // if (routes.isFav()) {
 //            imageViewFav.setVisibility(View.VISIBLE);
 //        } else {

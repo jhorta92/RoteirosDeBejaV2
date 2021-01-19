@@ -8,10 +8,11 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Routes.class}, version = 2)
+@Database(entities = {Routes.class,Point.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract RoutesDao getRoutesDao();
+    public abstract PointDao getPointDao();
 
     private static AppDatabase INSTANCE;
 
