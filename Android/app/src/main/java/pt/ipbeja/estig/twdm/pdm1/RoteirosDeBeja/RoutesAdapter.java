@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class RoutesAdapter extends BaseAdapter {
@@ -21,12 +23,6 @@ public class RoutesAdapter extends BaseAdapter {
         this.routes = routesList;
 
     }
-
-    @Override
-    public int getViewTypeCount() {
-        return 2;
-    }
-
 
     @Override
     public int getCount() {
@@ -55,16 +51,25 @@ public class RoutesAdapter extends BaseAdapter {
         Routes routes = this.getItem(position);
         ImageView imageViewLogo = convertView.findViewById(R.id.imageViewLogo);
         ImageView imageViewFav = convertView.findViewById(R.id.imageViewFav);
+        ImageView imageViewVisited = convertView.findViewById(R.id.imageView2);
         TextView textViewName = convertView.findViewById(R.id.textViewName);
 
         textViewName.setText(routes.getName());
-        imageViewLogo.setBackgroundResource(getImageId(context, routes.getImageUrl()));
+        if (routes.getImages().size() > 0) {
+            Glide.with(context).load(routes.getImages().get(0)).into(imageViewLogo);
+        }
 
         if (routes.isFav()) {
             imageViewFav.setVisibility(View.VISIBLE);
         } else {
             imageViewFav.setVisibility(View.INVISIBLE);
         }
+        
+        // if (routes.isFav()) {
+//            imageViewFav.setVisibility(View.VISIBLE);
+//        } else {
+//            imageViewFav.setVisibility(View.INVISIBLE);
+//        }
 
         return convertView; // devolver a linha preenchida com a informação que queremos apresentar
     }

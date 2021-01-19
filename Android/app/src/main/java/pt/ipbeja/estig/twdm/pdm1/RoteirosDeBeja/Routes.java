@@ -3,23 +3,25 @@ package pt.ipbeja.estig.twdm.pdm1.RoteirosDeBeja;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.List;
+
 @Entity
 public class Routes {
     @PrimaryKey(autoGenerate = true)
     private long id;
     private String name;
     private String description;
-    private String imageUrl;
+    private List<String> images;
     private String videoUrl;
     private String coordinate;
     private boolean fav;
 
 
-    public Routes(long id, String name, String description, String imageUrl, String videoUrl, String coordinate, boolean fav) {
+    public Routes(long id, String name, String description, List<String> imageUrl, String videoUrl, String coordinate, boolean fav) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.imageUrl = imageUrl;
+        this.images = images;
         this.videoUrl = videoUrl;
         this.coordinate = coordinate;
         this.fav = fav;
@@ -49,12 +51,12 @@ public class Routes {
         this.description = description;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public List<String> getImages() {
+        return images;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     public String getVideoUrl() {

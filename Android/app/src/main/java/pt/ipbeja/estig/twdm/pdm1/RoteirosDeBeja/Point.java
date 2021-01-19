@@ -61,8 +61,7 @@ public class Point {
         this.description = description;
     }
 
-    public List<String> getImages() {
-        return images;
+    public List<String> getImages() { return images;
     }
 
     public void setImages(List<String> images) {
