@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         DateFormat.format("", 12323L);
 
         ListView listView = findViewById(R.id.listView);
-        // a Lista inicial do CarManufacturerAdapter é obtida do método static getAll da Class DataSource
+        // a Lista inicial das rotas é obtida do método static getAll da Class DataSource
         AppDatabase appDatabase = AppDatabase.getInstance(this);
         this.routesDao = appDatabase.getRoutesDao();
         this.adapter = new RoutesAdapter(this, this.routesDao.getAllFromNewerToOlder());

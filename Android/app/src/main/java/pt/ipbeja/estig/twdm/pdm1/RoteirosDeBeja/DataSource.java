@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class DataSource {
 
-    // Utilizamos a Lista de CarManufacturer "carManufacturers" como "tabela" de CarManufacturer
+    // Utilizamos a Lista de rotas "routes" como "tabela" de rotas
     private static List<Routes> routes;
 
     // método que permite obter todos os itens da lista
