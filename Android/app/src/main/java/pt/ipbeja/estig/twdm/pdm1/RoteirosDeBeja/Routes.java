@@ -13,17 +13,15 @@ public class Routes {
     private String description;
     private List<String> images;
     private String videoUrl;
-    private String coordinate;
     private boolean fav;
 
 
-    public Routes(long id, String name, String description, List<String> imageUrl, String videoUrl, String coordinate, boolean fav) {
+    public Routes(long id, String name, String description, List<String> imageUrl, String videoUrl, boolean fav) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.images = images;
         this.videoUrl = videoUrl;
-        this.coordinate = coordinate;
         this.fav = fav;
     }
 
@@ -66,10 +64,6 @@ public class Routes {
     public void setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
     }
-
-    public String getCoordinate() { return coordinate; }
-
-    public void setCoordinate(String coordinate) { this.coordinate = coordinate; }
 
     public boolean isFav() { return fav; }
 

@@ -13,18 +13,16 @@ public class Point {
     private String name;
     private String description;
     private List<String> images;
-    private String videoUrl;
     private String coordinate;
     private boolean Vist;
 
 
-    public Point(long id, long id_route, String name, String description, List<String> images, String videoUrl, String coordinate, boolean vist) {
+    public Point(long id, long id_route, String name, String description, List<String> images, String coordinate, boolean vist) {
         this.id = id;
         this.id = id_route;
         this.name = name;
         this.description = description;
         this.images = images;
-        this.videoUrl = videoUrl;
         this.coordinate = coordinate;
         this.Vist = vist;
     }
@@ -63,17 +61,8 @@ public class Point {
 
     public List<String> getImages() { return images;
     }
-
     public void setImages(List<String> images) {
         this.images = images;
-    }
-
-    public String getVideoUrl() {
-        return videoUrl;
-    }
-
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
     }
 
     public String getCoordinate() { return coordinate; }
