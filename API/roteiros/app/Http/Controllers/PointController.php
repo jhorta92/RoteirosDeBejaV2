@@ -3,22 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Rota;
-use App\Http\Resources\Rota as RotaResource;
+use App\Models\Point;
+use App\Http\Resources\Point as PointResource;
 
-class RotaController extends Controller
+class PointController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-   
         //
-        $p = Rota::all();
-        return RotaResource::collection($p);
+        $p = Point::all()->where('routes_id','=',$id);
+        return PointResource::collection($p);
     }
 
     /**
@@ -30,8 +29,8 @@ class RotaController extends Controller
     public function show($id)
     {
         //
-        $p = Rota::findOrFail($id);
-        return new RotaResource($p);
+        $p = Point::findOrFail($id);
+        return new PointResource($p);
+   
     }
-
 }

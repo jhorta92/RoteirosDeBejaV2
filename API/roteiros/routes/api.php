@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RotaController;
-use App\Http\Controllers\PontoController;
+use App\Http\Controllers\RouteController;
+use App\Http\Controllers\PointController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,5 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('rotas',RotaController::class);
-Route::apiResource('rotas.pontos',RotaController::class);
+Route::apiResource('routes',RouteController::class);
+Route::apiResource('routes.points',PointController::class)->shallow();

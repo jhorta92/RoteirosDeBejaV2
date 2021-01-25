@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Ponto;
-use App\Http\Resources\Ponto as PontoResource;
+use App\Models\Route;
+use App\Http\Resources\Route as RouteResource;
 
-class PontoController extends Controller
+class RouteController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
+   
         //
-        $p = Ponto::all()->where('id_rota','=',$id);
-        return PontoResource::collection($p);
+        $p = Route::all();
+        return RouteResource::collection($p);
     }
 
     /**
@@ -29,8 +30,8 @@ class PontoController extends Controller
     public function show($id)
     {
         //
-        $p = Ponto::findOrFail($id);
-        return new PontoResource($p);
-   
+        $p = Route::findOrFail($id);
+        return new RouteResource($p);
     }
+
 }
