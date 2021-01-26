@@ -1,4 +1,4 @@
-package pt.ipbeja.estig.twdm.pdm1.RoteirosDeBeja;
+package pt.ipbeja.estig.twdm.roteirosdebeja;
 
 import android.content.Context;
 
@@ -21,7 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-
-        assertEquals("pt.ipbeja.estig.twdm.pdm1.RoteirosDeBeja", appContext.getPackageName());
+        assertEquals("pt.ipbeja.estig.twdm.roteirosdebeja", appContext.getPackageName());
     }
 }

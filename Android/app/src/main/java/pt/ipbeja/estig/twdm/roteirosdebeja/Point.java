@@ -1,6 +1,7 @@
-package pt.ipbeja.estig.twdm.pdm1.RoteirosDeBeja;
+package pt.ipbeja.estig.twdm.roteirosdebeja;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.List;
@@ -9,22 +10,29 @@ import java.util.List;
 public class Point {
     @PrimaryKey(autoGenerate = true)
     private long id;
+    @Ignore
     private long id_route;
+    @Ignore
     private String name;
+    @Ignore
     private String description;
+    @Ignore
     private List<String> images;
+    @Ignore
     private String coordinate;
-    private boolean Vist;
+    private boolean isSeen;
 
+    public Point() {}
 
-    public Point(long id, long id_route, String name, String description, List<String> images, String coordinate, boolean vist) {
+    @Ignore
+    public Point(long id, long id_route, String name, String description, List<String> images, String coordinate, boolean isSeen) {
         this.id = id;
         this.id = id_route;
         this.name = name;
         this.description = description;
         this.images = images;
         this.coordinate = coordinate;
-        this.Vist = vist;
+        this.isSeen = isSeen;
     }
 
     public long getId() {
@@ -69,7 +77,7 @@ public class Point {
 
     public void setCoordinate(String coordinate) { this.coordinate = coordinate; }
 
-    public boolean isVist() { return Vist; }
+    public boolean isSeen() { return this.isSeen; }
 
-    public void setVist(boolean vist) { this.Vist = vist; }
+    public void setSeen(boolean isSeen) { this.isSeen = isSeen; }
 }

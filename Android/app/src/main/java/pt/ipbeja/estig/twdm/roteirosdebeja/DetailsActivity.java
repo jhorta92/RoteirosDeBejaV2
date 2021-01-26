@@ -1,5 +1,4 @@
-package pt.ipbeja.estig.twdm.pdm1.RoteirosDeBeja;
-
+package pt.ipbeja.estig.twdm.roteirosdebeja;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -7,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -19,7 +16,7 @@ public class DetailsActivity extends AppCompatActivity {
 
 
 
-    private Routes routes;
+    private Route route;
     private long id;
     private RoutesDao routesDao;
 
@@ -39,13 +36,16 @@ public class DetailsActivity extends AppCompatActivity {
             if (this.id == -1) {
                 finish(); // Termina esta Activity
             }
-            this.routes = this.routesDao.getById(this.id);
-            textViewName.setText(this.routes.getName());
-            textViewDescription.setText(this.routes.getDescription());
+            this.route = this.routesDao.getById(this.id);
+            textViewName.setText(this.route.getName());
+            textViewDescription.setText(this.route.getDescription());
             Context ctx = getApplicationContext();
-            imageSlider.setBackgroundResource(getImageId(ctx,this.routes.getImageUrl()));
-            Glide.with(this).load(this.routes.getImageUrl()).into(imageSlider);
-            this.updateUI(this.routes.isFav());
+            if (this.route.getImages().size() > 0) {
+//                this.route.getImages()
+//                imageSlider.setBackgroundResource(getImageId(ctx,this.route.getImageUrl()));
+//                Glide.with(this).load(this.route.getImageUrl()).into(imageSlider);
+            }
+            this.updateUI(this.route.isFav());
         }
 
 
@@ -57,14 +57,14 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void toggleFav(View view) {
-        if (this.routes.isFav()) {
-            this.routes.setFav(false);
+        if (this.route.isFav()) {
+            this.route.setFav(false);
         } else {
-            this.routes.setFav(true);
+            this.route.setFav(true);
         }
-        this.updateUI(this.routes.isFav());
+        this.updateUI(this.route.isFav());
 
-        this.routesDao.update(this.routes);
+        this.routesDao.update(this.route);
     }
 
     private void updateUI(boolean isFav) {

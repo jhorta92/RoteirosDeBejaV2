@@ -1,4 +1,4 @@
-package pt.ipbeja.estig.twdm.pdm1.RoteirosDeBeja;
+package pt.ipbeja.estig.twdm.roteirosdebeja;
 
 import org.junit.Test;
 

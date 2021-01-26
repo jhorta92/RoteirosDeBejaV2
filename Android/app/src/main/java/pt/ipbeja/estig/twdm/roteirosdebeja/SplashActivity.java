@@ -1,4 +1,5 @@
-package pt.ipbeja.estig.twdm.pdm1.RoteirosDeBeja;
+package pt.ipbeja.estig.twdm.roteirosdebeja;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

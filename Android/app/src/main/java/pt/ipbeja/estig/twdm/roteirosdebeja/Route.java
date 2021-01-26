@@ -1,22 +1,31 @@
-package pt.ipbeja.estig.twdm.pdm1.RoteirosDeBeja;
+package pt.ipbeja.estig.twdm.roteirosdebeja;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.List;
 
 @Entity
-public class Routes {
-    @PrimaryKey(autoGenerate = true)
+public class Route {
+    @PrimaryKey()
     private long id;
+    @Ignore
     private String name;
+    @Ignore
     private String description;
+    @Ignore
     private List<String> images;
+    @Ignore
     private String videoUrl;
     private boolean fav;
 
+    public Route() {
 
-    public Routes(long id, String name, String description, List<String> imageUrl, String videoUrl, boolean fav) {
+    }
+
+    @Ignore
+    public Route(long id, String name, String description, List<String> imageUrl, String videoUrl, boolean fav) {
         this.id = id;
         this.name = name;
         this.description = description;

@@ -1,4 +1,4 @@
-package pt.ipbeja.estig.twdm.pdm1.RoteirosDeBeja;
+package pt.ipbeja.estig.twdm.roteirosdebeja;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,10 @@ import java.util.List;
 public class DataSource {
 
     // Utilizamos a Lista de rotas "routes" como "tabela" de rotas
-    private static List<Routes> routes;
+    private static List<Route> routes;
 
     // método que permite obter todos os itens da lista
-    public static List<Routes> getAll() {
+    public static List<Route> getAll() {
         // Caso a lista não esteja inicializada, devemos inicializar e preencher
         if (routes == null) {
             routes = new ArrayList<>();
@@ -20,26 +20,26 @@ public class DataSource {
         return routes;
     }
 
-    public static void update(int position, Routes routes) {
-        getAll().set(position, routes);
+    public static void update(int position, Route route) {
+        getAll().set(position, route);
     }
 
-    public static Routes getByPosition(int position) {
+    public static Route getByPosition(int position) {
         return getAll().get(position);
     }
 
 
-    public static void add(Routes routes) {
+    public static void add(Route route) {
         if (DataSource.routes == null) {
             DataSource.routes = new ArrayList<>();
         }
         long newId = 1;
         if (DataSource.routes.size() > 0) {
-            Routes lastOne = DataSource.routes.get(DataSource.routes.size() - 1);
+            Route lastOne = DataSource.routes.get(DataSource.routes.size() - 1);
             newId = lastOne.getId() + 1;
         }
-        routes.setId(newId);
-        DataSource.routes.add(routes);
+        route.setId(newId);
+        DataSource.routes.add(route);
     }
 
     public static void remove(int position) {
@@ -48,9 +48,10 @@ public class DataSource {
         }
     }
 
-    public static void remove(Routes routes) {
+    public static void remove(Route route) {
         if (DataSource.routes != null) {
-            DataSource.routes.remove(routes);
+            DataSource.routes.remove(route);
         }
     }
 }
+

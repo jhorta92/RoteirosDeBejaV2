@@ -1,4 +1,4 @@
-package pt.ipbeja.estig.twdm.pdm1.RoteirosDeBeja;
+package pt.ipbeja.estig.twdm.roteirosdebeja;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,24 +13,25 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PointsAdapter extends BaseAdapter {
+public class RoutesAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Point> pointList;
+    private List<Route> routes;
 
-    public PointsAdapter(Context context) {
+
+    public RoutesAdapter(Context context) {
         this.context = context;
-        this.pointList = new ArrayList<>();
+        this.routes = new ArrayList<>();
     }
 
     @Override
     public int getCount() {
-        return this.pointList.size();
+        return this.routes.size();
     }
 
     @Override
-    public Point getItem(int position) {
-        return this.pointList.get(position);
+    public Route getItem(int position) {
+        return this.routes.get(position);
     }
 
     @Override
@@ -40,30 +41,28 @@ public class PointsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         if (convertView == null) {
             convertView = LayoutInflater.from(this.context).inflate(R.layout.list_row, parent, false);
         }
 
-        Point point = this.getItem(position);
+        Route route = this.getItem(position);
         ImageView imageViewLogo = convertView.findViewById(R.id.imageViewLogo);
         ImageView imageViewFav = convertView.findViewById(R.id.imageViewFav);
         ImageView imageViewVisited = convertView.findViewById(R.id.imageView2);
         TextView textViewName = convertView.findViewById(R.id.textViewName);
 
-        textViewName.setText(point.getName());
-
-        if (point.getImages().size() > 0) {
-            Glide.with(context).load(point.getImages().get(0)).into(imageViewLogo);
+        textViewName.setText(route.getName());
+        if (route.getImages().size() > 0) {
+            Glide.with(context).load(route.getImages().get(0)).into(imageViewLogo);
         }
 
-        if (point.isVist()) {
-            imageViewVisited.setVisibility(View.VISIBLE);
+        if (route.isFav()) {
+            imageViewFav.setVisibility(View.VISIBLE);
         } else {
-            imageViewVisited.setVisibility(View.INVISIBLE);
+            imageViewFav.setVisibility(View.INVISIBLE);
         }
 
-//        if (point.isFav()) {
+        // if (routes.isFav()) {
 //            imageViewFav.setVisibility(View.VISIBLE);
 //        } else {
 //            imageViewFav.setVisibility(View.INVISIBLE);
@@ -76,8 +75,8 @@ public class PointsAdapter extends BaseAdapter {
         return c.getResources().getIdentifier(ImageName, "drawable", c.getPackageName());
     }
 
-    public void updateList(List<Point> newList) {
-        this.pointList = newList;
+    public void updateList(List<Route> newList) {
+        this.routes = newList;
         this.notifyDataSetChanged();
         // É o método que indica ao Adapter que os dados alteraram e possívelmente terá que atualizar a UI
     }

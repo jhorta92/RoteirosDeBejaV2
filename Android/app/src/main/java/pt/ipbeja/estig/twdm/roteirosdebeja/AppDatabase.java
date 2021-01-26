@@ -1,14 +1,12 @@
-package pt.ipbeja.estig.twdm.pdm1.RoteirosDeBeja;
+package pt.ipbeja.estig.twdm.roteirosdebeja;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Routes.class,Point.class}, version = 2)
+@Database(entities = {Route.class,Point.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract RoutesDao getRoutesDao();
