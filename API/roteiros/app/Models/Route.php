@@ -9,7 +9,7 @@ class Route extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name','descriptio', 'images','videoUrl'
+        'name','description', 'images','videoUrl'
     ];
 }
 

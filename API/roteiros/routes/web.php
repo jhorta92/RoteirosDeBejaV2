@@ -17,5 +17,5 @@ use App\Http\Controllers\PointController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('routes', RouteController::class);
-Route::resource('routes.points', PointController::class)->shallow();
+Route::resource('route', RouteController::class);
+Route::resource('point', PointController::class);

@@ -34,4 +34,66 @@ class RouteController extends Controller
         return new RouteResource($p);
     }
 
+    public function create()
+    {
+        //
+        return view('route.create');
+    }
+
+    public function store(Request $request)
+    {
+        //
+        $request->validate([
+            'name'=>'required',
+            'description'=> 'required',
+            'images' => 'required',
+            'videoUrl' => 'required'
+            
+        ]);
+ 
+        $route = new Route([
+            'name' => $request->get('name'),
+            'description'=> $request->get('description'),
+            'images'=> $request->get('images'),
+            'videoUrl'=> $request->get('videoUrl')
+        ]);
+ 
+        $route->save();
+        return redirect('/route')->with('success', 'Route has been added');
+    }
+
+    public function edit(Route $route)
+    {
+        //
+        return view('route.edit',compact('route'));
+    }
+
+    public function update(Request $request,$id)
+    {
+        //
+ 
+        $request->validate([
+            'name'=>'required',
+            'description'=> 'required',
+            'images' => 'required',
+            'videoUrl' => 'required'
+        ]);
+ 
+ 
+        $route = Route::find($id);
+        $route->name = $request->get('name');
+        $route->description = $request->get('description');
+        $route->imagens = $request->get('imagens');
+        $route->videoUrl = $request->get('videoUrl');
+ 
+        $route->update();
+ 
+        return redirect('/route')->with('success', 'route updated successfully');
+    }
+    public function destroy(Route $route)
+    {
+        //
+        $route->delete();
+        return redirect('/route')->with('success', 'Route deleted successfully');
+    }
 }
