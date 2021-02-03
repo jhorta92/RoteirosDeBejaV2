@@ -1,10 +1,10 @@
 @section('content')
     <div class="row">
         <div class="col-lg-11">
-            <h2>Add New Student</h2>
+            <h2>Add New route</h2>
         </div>
         <div class="col-lg-1">
-            <a class="btn btn-primary" href="{{ url('student') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ url('route') }}"> Back</a>
         </div>
     </div>
  
@@ -18,19 +18,24 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('student.store') }}" method="POST">
+    <form action="{{ route('route.store') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="txtFirstName">First Name:</label>
-            <input type="text" class="form-control" id="txtFirstName" placeholder="Enter First Name" name="txtFirstName">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter  Name" name="name">
         </div>
         <div class="form-group">
-            <label for="txtLastName">Last Name:</label>
-            <input type="text" class="form-control" id="txtLastName" placeholder="Enter Last Name" name="txtLastName">
+            <label for="description">Description:</label>
+            <input type="text" class="form-control" id="description" row="200" placeholder="Enter description" name="description"></textarea>
         </div>
         <div class="form-group">
-            <label for="txtAddress">Address:</label>
-            <textarea class="form-control" id="txtAddress" name="txtAddress" rows="10" placeholder="Enter Address"></textarea>
+            <label for="images">Images:</label>
+            <textarea class="form-control" id="images" name="images" rows="200" placeholder="Enter images"></textarea>
+        </div>
+        </div>
+        <div class="form-group">
+            <label for="videoUrl">Video:</label>
+            <textarea class="form-control" id="videoUrl" name="videoUrl" rows="200" placeholder="Enter videoUrl"></textarea>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
     </form>

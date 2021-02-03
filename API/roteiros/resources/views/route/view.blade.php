@@ -1,4 +1,4 @@
-@extends('student.layouts.app')
+@extends('route.layouts.app')
  
 @section('content')
     <div class="row">
@@ -6,21 +6,25 @@
                 <h2>Laravel 8 CRUD Example</h2>
         </div>
         <div class="col-lg-1">
-            <a class="btn btn-primary" href="{{ url('student') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ url('route') }}"> Back</a>
         </div>
     </div>
     <table class="table table-bordered">
         <tr>
-            <th>First Name:</th>
-            <td>{{ $student->first_name }}</td>
+            <th>Name:</th>
+            <td>{{ $route->name }}</td>
         </tr>
         <tr>
-            <th>Last Name:</th>
-            <td>{{ $student->first_name }}</td>
+            <th>Description:</th>
+            <td>{{ $route->description }}</td>
         </tr>
         <tr>
-            <th>Address:</th>
-            <td>{{ $student->address }}</td>
+            <th>Images:</th>
+            <td>{{ $route->images }}</td>
+        </tr>
+        <tr>
+            <th>VideoUrl:</th>
+            <td>{{ $route->videoUrl }}</td>
         </tr>
  
     </table>

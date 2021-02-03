@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RouteController;
-use App\Http\Controllers\PointController;
+use App\Http\Controllers\RouteWebController;
+use App\Http\Controllers\PointWebController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,5 +17,5 @@ use App\Http\Controllers\PointController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('route', RouteController::class);
-Route::resource('point', PointController::class);
+Route::resource('route', RouteWebController::class);
+Route::resource('point', PointWebController::class);
