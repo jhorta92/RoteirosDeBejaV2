@@ -17,8 +17,9 @@ class CreateRoutesTable extends Migration
             $table->bigIncrements('id');
 			$table->String('name',30);
 			$table->text('description');
-			$table->String('images',400);
-			$table->String('videoUrl',400)->nullable;
+			$table->String('images',250);
+			$table->String('videoUrl',250)->nullable;
+            $table->timestamps();
             
         });
     }

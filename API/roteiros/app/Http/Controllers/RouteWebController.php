@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Route;
 use Illuminate\Http\Request;
+use App\Http\Resources\Route as RouteResource;
+use App\Http\Requests;
+
 
 class RouteWebController extends Controller
 {
@@ -14,11 +17,10 @@ class RouteWebController extends Controller
      */
     public function index()
     {
-        //
-        $routes = Route::all();
-        return view('route.list', compact('routes'));
+        $routes = Route::latest()->paginate(5);
+        return view('route.list',compact('routes'))
+        ->with('i', (request()->input('page', 1) -1) * 5);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -41,22 +43,22 @@ class RouteWebController extends Controller
     {
         //
         $request->validate([
-            'name'=>'required',
-            'description'=> 'required',
-            'images' => 'required',
-            'videoUrl' => 'required'
+            'txtName'=>'required',
+            'txtDescription'=> 'required',
+            'txtImage' => 'required',
+            'txtVideoUrl' => 'required'
             
         ]);
  
         $route = new Route([
-            'name' => $request->get('name'),
-            'description'=> $request->get('description'),
-            'images'=> $request->get('images'),
-            'videoUrl'=> $request->get('videoUrl')
+            'name' => $request->get('txtName'),
+            'description'=> $request->get('txtDescription'),
+            'images'=> $request->get('txtImage'),
+            'videoUrl'=> $request->get('txtVideoUrl')
         ]);
  
         $route->save();
-        return redirect('/route')->with('success', 'Route has been added');
+        return redirect('/routes')->with('success', 'Route has been added');
     }
 
     /**
@@ -94,22 +96,22 @@ class RouteWebController extends Controller
     {
         //
         $request->validate([
-            'name'=>'required',
-            'description'=> 'required',
-            'images' => 'required',
-            'videoUrl' => 'required'
+            'txtName'=>'required',
+            'txtDescription'=> 'required',
+            'txtImage' => 'required',
+            'txtVideoUrl' => 'required'
         ]);
  
  
         $route = Route::find($id);
-        $route->name = $request->get('name');
-        $route->description = $request->get('description');
-        $route->imagens = $request->get('imagens');
-        $route->videoUrl = $request->get('videoUrl');
+        $route->name = $request->get('txtName');
+        $route->description = $request->get('txtDescription');
+        $route->images = $request->get('txtImage');
+        $route->videoUrl = $request->get('txtVideoUrl');
  
         $route->update();
  
-        return redirect('/route')->with('success', 'route updated successfully');
+        return redirect('/routes')->with('success', 'Rota atualizado com sucesso');
     }
 
     /**
@@ -122,6 +124,6 @@ class RouteWebController extends Controller
     {
         //
         $route->delete();
-        return redirect('/route')->with('success', 'Route deleted successfully');
+        return redirect('/routes')->with('success', 'Rota foi eliminada com Sucesso!');
     }
 }

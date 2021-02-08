@@ -1,31 +1,19 @@
 @extends('route.layouts.app')
- 
+
+
 @section('content')
     <div class="row">
         <div class="col-lg-11">
-                <h2>Laravel 8 CRUD Example</h2>
-        </div>
-        <div class="col-lg-1">
-            <a class="btn btn-primary" href="{{ url('route') }}"> Back</a>
-        </div>
+                <h2>Detalhe da Rota</h2>
     </div>
-    <table class="table table-bordered">
-        <tr>
-            <th>Name:</th>
-            <td>{{ $route->name }}</td>
-        </tr>
-        <tr>
-            <th>Description:</th>
-            <td>{{ $route->description }}</td>
-        </tr>
-        <tr>
-            <th>Images:</th>
-            <td>{{ $route->images }}</td>
-        </tr>
-        <tr>
-            <th>VideoUrl:</th>
-            <td>{{ $route->videoUrl }}</td>
-        </tr>
- 
-    </table>
+
+    <div class="card" >
+  <img class="card-img-top" src="{{ $route->image }}"  height=200 width=200 alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{ $route->name }}</h5>
+    <p class="card-text">{{ $route->description }}</p>
+    <a class="btn btn-primary" href="{{ url('routes') }}"> Voltar</a>
+  </div>
+</div>
+
 @endsection

@@ -1,11 +1,18 @@
 package pt.ipbeja.estig.twdm.roteirosdebeja;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -18,7 +25,14 @@ public class DetailsActivity extends AppCompatActivity {
 
     private Route route;
     private long id;
-    private RoutesDao routesDao;
+    private RoutesService routesService;
+
+    public static void startActivity(Context context, long id) {
+        Intent intent = new Intent(context, DetailsActivity.class);
+        intent.putExtra(KEY_ID, id);
+        context.startActivity(intent);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,27 +41,37 @@ public class DetailsActivity extends AppCompatActivity {
         TextView textViewName = findViewById(R.id.textViewName);
         TextView textViewDescription = findViewById(R.id.textView);
         ImageView imageSlider = findViewById(R.id.imageSlider);
-        this.routesDao = AppDatabase.getInstance(this).getRoutesDao();
+        //this.routesDao = AppDatabase.getRoutesService().getRoutesService();
 
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             this.id = bundle.getLong(KEY_ID, -1);
-            if (this.id == -1) {
-                finish(); // Termina esta Activity
-            }
-            this.route = this.routesDao.getById(this.id);
-            textViewName.setText(this.route.getName());
-            textViewDescription.setText(this.route.getDescription());
-            Context ctx = getApplicationContext();
-            if (this.route.getImages().size() > 0) {
-//                this.route.getImages()
-//                imageSlider.setBackgroundResource(getImageId(ctx,this.route.getImageUrl()));
-//                Glide.with(this).load(this.route.getImageUrl()).into(imageSlider);
-            }
-            this.updateUI(this.route.isFav());
         }
+        if (this.id > 0) {
+            RoutesService service = RoutesDataSource.getRoutesService();
+            Call<Route> call = service.getRouteDetails(this.id);
+            call.enqueue(new Callback<Route>() {
+                @Override
+                public void onResponse(Call<Route> call, Response<Route> response) {
+                    if (response.isSuccessful()) {
+                        Route route = response.body();
+                        textViewName.setText(route.getName());
+                        textViewDescription.setText(route.getDescription());
+                        Glide.with(DetailsActivity.this).load(route.getImage()).into(imageSlider);
+                    } else {
+                        Log.e("PlanetDetailsActivity", "Error ocurred");
+                    }
+                }
 
+                @Override
+                public void onFailure(Call<Route> call, Throwable t) {
+                    Log.e("PlanetDetailsActivity", "Exception", t);
+                }
+            });
+        } else {
+            finish();
+        }
 
     }
 
@@ -56,16 +80,16 @@ public class DetailsActivity extends AppCompatActivity {
         return c.getResources().getIdentifier(ImageName, "drawable", c.getPackageName());
     }
 
-    public void toggleFav(View view) {
-        if (this.route.isFav()) {
-            this.route.setFav(false);
-        } else {
-            this.route.setFav(true);
-        }
-        this.updateUI(this.route.isFav());
-
-        this.routesDao.update(this.route);
-    }
+//    public void toggleFav(View view) {
+//        if (this.route.isFav()) {
+//            this.route.setFav(false);
+//        } else {
+//            this.route.setFav(true);
+//        }
+//        this.updateUI(this.route.isFav());
+//
+//        //this.routesService.update(this.route);
+//    }
 
     private void updateUI(boolean isFav) {
 //        if (isFav) {

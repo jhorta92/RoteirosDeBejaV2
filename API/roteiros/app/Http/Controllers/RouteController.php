@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Route;
+use Illuminate\Http\Request;
 use App\Http\Resources\Route as RouteResource;
+use App\Http\Requests;
+
 
 class RouteController extends Controller
 {
@@ -17,8 +19,8 @@ class RouteController extends Controller
     {
    
         //
-        $p = Route::all();
-        return RouteResource::collection($p);
+        $route = Route::all();
+        return RouteResource::collection($route);
     }
 
     /**
@@ -30,7 +32,7 @@ class RouteController extends Controller
     public function show($id)
     {
         //
-        $p = Route::findOrFail($id);
-        return new RouteResource($p);
+        $route = Route::findOrFail($id);
+        return new RouteResource($route);
     }
 }

@@ -18,9 +18,10 @@ class CreatePointsTable extends Migration
 			$table->foreignId('routes_id')->constrained('routes');
 			$table->String('name',30);
 			$table->text('description');
-			$table->String('images',400);
-			$table->String('videoUrl',400)->nullable;
-			$table->String('coordinate',400);
+			$table->String('images',250);
+			$table->String('videoUrl',250)->nullable;
+			$table->String('coordinate',250);
+            $table->timestamps();
         });
     }
 

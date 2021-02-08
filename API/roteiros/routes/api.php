@@ -2,8 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RouteController;
-use App\Http\Controllers\PointController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,5 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('routes',RouteController::class);
-Route::apiResource('routes.points',PointController::class)->shallow();
+
+Route::apiResource('route',RouteController::class);
+Route::apiResource('route.points',PointController::class)->shallow();

@@ -1,10 +1,11 @@
+@extends('point.layouts.app')
 @section('content')
     <div class="row">
         <div class="col-lg-11">
-            <h2>Add New point</h2>
+            <h2>Adicionar Ponto de interesse</h2>
         </div>
         <div class="col-lg-1">
-            <a class="btn btn-primary" href="{{ url('point') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ url('points') }}"> Back</a>
         </div>
     </div>
  
@@ -18,34 +19,39 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('point.store') }}" method="POST">
+    <form action="{{ route('points.store') }}" method="POST">
         @csrf
+
+            <div class="form-group">
+                <label for="routes_id">Rota:</label>
+                <select class="form-control" id="routes_id" placeholder="Enter  Name" name="routes_id">
+                    @foreach($routes as $route)
+                        <option value="{{$route->id}}">{{$route->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+
         <div class="form-group">
-            <label for="routes_id">Route id:</label>
-            <input type="text" class="form-control" id="routes_id" placeholder="Enter  routes_id" name="routes_id">
-        </div>
-        <div class="form-group">
-            <label for="name">Name:</label>
+            <label for="name">Nome:</label>
             <input type="text" class="form-control" id="name" placeholder="Enter  Name" name="name">
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
-            <input type="text" class="form-control" id="description" row="200" placeholder="Enter description" name="description"></textarea>
+            <textarea type="text" class="form-control" id="description" rows="10" placeholder="Enter description" name="description"></textarea>
         </div>
         <div class="form-group">
             <label for="images">Images:</label>
-            <textarea class="form-control" id="images" name="images" rows="200" placeholder="Enter images"></textarea>
-        </div>
+            <input type="text" class="form-control" id="images" name="images" placeholder="Enter images"></input>
         </div>
         <div class="form-group">
             <label for="videoUrl">Video:</label>
-            <textarea class="form-control" id="videoUrl" name="videoUrl" rows="200" placeholder="Enter videoUrl"></textarea>
+            <input type="text" class="form-control" id="videoUrl" name="videoUrl"  placeholder="Enter videoUrl"></input>
         </div>
-        </div>
+  
         <div class="form-group">
             <label for="coordinate">Coordinate:</label>
-            <textarea class="form-control" id="coordinate" name="coordinate" rows="200" placeholder="Enter coordinate"></textarea>
+            <input type="text" class="form-control" id="coordinate" name="coordinate" rows="200" placeholder="Enter coordinate"></input>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default">Submeter</button>
     </form>
 @endsection

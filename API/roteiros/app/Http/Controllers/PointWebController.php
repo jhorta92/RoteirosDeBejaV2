@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Point;
+use App\Models\Route;
 use Illuminate\Http\Request;
 
 class PointWebController extends Controller
@@ -26,8 +27,9 @@ class PointWebController extends Controller
      */
     public function create()
     {
-        //
-        return view('point.create');
+        $routes = Route::all(['id','name']);
+        return view('point.create',compact('routes'));
+       // return view('point.create');
     }
 
     /**
@@ -42,7 +44,7 @@ class PointWebController extends Controller
         $request->validate([
             'routes_id'=>'required',
             'name'=>'required',
-            'iescription'=> 'required',
+            'description'=> 'required',
             'images' => 'required',
             'videoUrl' => 'required',
             'coordinate' => 'required'
@@ -60,9 +62,9 @@ class PointWebController extends Controller
         ]);
  
         $point->save();
-        return redirect('/point')->with('success', 'Point has been added');
+        return redirect('/points')->with('success', 'Ponto de interesse criado com sucesso');
     }
-    }
+    
 
     /**
      * Display the specified resource.
@@ -96,16 +98,15 @@ class PointWebController extends Controller
      * @param  \App\Models\Point  $point
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Point $point)
+    public function update(Request $request, $id)
     {
         //
         $request->validate([
             'routes_id'=>'required',
             'name'=>'required',
             'description'=> 'required',
-            'images' => 'required',
-            'videoUrl' => 'required',
-            'coordinate' => 'required'
+            'images' => 'required'
+
         ]);
  
  
@@ -120,7 +121,7 @@ class PointWebController extends Controller
  
         $point->update();
  
-        return redirect('/point')->with('success', 'point updated successfully');
+        return redirect('/points')->with('success', 'Ponto de interesse atualizado com sucesso');
     }
 
     /**
@@ -133,6 +134,6 @@ class PointWebController extends Controller
     {
         //
         $point->delete();
-        return redirect('/point')->with('success', 'Point deleted successfully');
+        return redirect('/points')->with('success', 'Ponto de interesse eliminado com sucesso');
     }
 }

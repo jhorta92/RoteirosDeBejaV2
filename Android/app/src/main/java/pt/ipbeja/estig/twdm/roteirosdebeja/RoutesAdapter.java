@@ -52,21 +52,16 @@ public class RoutesAdapter extends BaseAdapter {
         TextView textViewName = convertView.findViewById(R.id.textViewName);
 
         textViewName.setText(route.getName());
-        if (route.getImages().size() > 0) {
-            Glide.with(context).load(route.getImages().get(0)).into(imageViewLogo);
+        if (route.getImage() != null) {
+            Glide.with(context).load(route.getImage()).into(imageViewLogo);
         }
 
-        if (route.isFav()) {
-            imageViewFav.setVisibility(View.VISIBLE);
-        } else {
-            imageViewFav.setVisibility(View.INVISIBLE);
-        }
-
-        // if (routes.isFav()) {
+//        if (route.isFav()) {
 //            imageViewFav.setVisibility(View.VISIBLE);
 //        } else {
 //            imageViewFav.setVisibility(View.INVISIBLE);
 //        }
+
 
         return convertView; // devolver a linha preenchida com a informação que queremos apresentar
     }
