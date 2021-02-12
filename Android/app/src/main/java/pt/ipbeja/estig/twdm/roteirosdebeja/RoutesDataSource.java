@@ -8,8 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RoutesDataSource {
 
-    private static final String baseEndpointb = "https://my-json-server.typicode.com/carlossancho-pt/planets/";
-    private static final String baseEndpoint  = "http://127.0.0.1:8000/api/routes";
+
+    private static final String baseEndpoint  = "http://192.168.1.77:8000/api/";
 
     private static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(baseEndpoint)

@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     // Criamos o adapter como variável de instância para permitir a sua utilização em todos os métodos da instância (nomeadamente no onCreate e onResume)
     private RoutesAdapter adapter;
     private RoutesService routesService;
-    private static String url_all_routes = "http://localhost:8000/api/routes";
+    //private static String url_all_routes = "http://localhost:8000/api/routes";
     //private static String url_all_points = "http://localhost:8000/api/routes";
 
     @Override
@@ -83,12 +83,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         RoutesService service = RoutesDataSource.getRoutesService();
-        Call<List<Route>> call = service.getRoutes();
-        call.enqueue(new Callback<List<Route>>() {
+        Call<BaseResponse<List<Route>>> call = service.getRoutes();
+        call.enqueue(new Callback<BaseResponse<List<Route>>>() {
             @Override
-            public void onResponse(Call<List<Route>> call, Response<List<Route>> response) {
+            public void onResponse(Call<BaseResponse<List<Route>>> call, Response<BaseResponse<List<Route>>> response) {
                 if (response.isSuccessful()) {
-                    List<Route> routeList = response.body();
+                    List<Route> routeList = response.body().getData();
                     if (routeList != null) {
                         adapter.updateList(routeList);
                     }
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Route>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<List<Route>>> call, Throwable t) {
                 Log.e("MainActivity", "Error ocurred", t);
             }
         });

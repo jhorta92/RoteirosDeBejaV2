@@ -8,14 +8,10 @@ import retrofit2.http.Path;
 
 public interface RoutesService {
 
-    //@GET("planets")
-    @GET("routes")
-    Call<List<Route>> getRoutes();
 
-    @GET("routes")
-    Call<Route> getRouteById(@Path("id")long id);
+    @GET("route")
+    Call<BaseResponse<List<Route>>> getRoutes();
 
-    @GET("routesDetails/{id}")
-    Call<Route> getRouteDetails(@Path("id") long id);
-
+    @GET("route/{id}")
+    Call<BaseResponse<Route>> getRouteById(@Path("id")long id);
 }

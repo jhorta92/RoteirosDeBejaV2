@@ -52,8 +52,8 @@ public class RoutesAdapter extends BaseAdapter {
         TextView textViewName = convertView.findViewById(R.id.textViewName);
 
         textViewName.setText(route.getName());
-        if (route.getImage() != null) {
-            Glide.with(context).load(route.getImage()).into(imageViewLogo);
+        if (route.getImages() != null) {
+            Glide.with(context).load(route.getImages()).into(imageViewLogo);
         }
 
 //        if (route.isFav()) {

@@ -50,22 +50,22 @@ public class DetailsActivity extends AppCompatActivity {
         }
         if (this.id > 0) {
             RoutesService service = RoutesDataSource.getRoutesService();
-            Call<Route> call = service.getRouteDetails(this.id);
-            call.enqueue(new Callback<Route>() {
+            Call<BaseResponse<Route>> call = service.getRouteById(this.id);
+            call.enqueue(new Callback<BaseResponse<Route>>() {
                 @Override
-                public void onResponse(Call<Route> call, Response<Route> response) {
+                public void onResponse(Call<BaseResponse<Route>> call, Response<BaseResponse<Route>> response) {
                     if (response.isSuccessful()) {
-                        Route route = response.body();
+                        Route route = response.body().getData();
                         textViewName.setText(route.getName());
                         textViewDescription.setText(route.getDescription());
-                        Glide.with(DetailsActivity.this).load(route.getImage()).into(imageSlider);
+                        Glide.with(DetailsActivity.this).load(route.getImages()).into(imageSlider);
                     } else {
                         Log.e("PlanetDetailsActivity", "Error ocurred");
                     }
                 }
 
                 @Override
-                public void onFailure(Call<Route> call, Throwable t) {
+                public void onFailure(Call<BaseResponse<Route>> call, Throwable t) {
                     Log.e("PlanetDetailsActivity", "Exception", t);
                 }
             });
