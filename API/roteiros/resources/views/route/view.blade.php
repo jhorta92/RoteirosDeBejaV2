@@ -8,7 +8,7 @@
     </div>
 
     <div class="card" >
-  <img class="card-img-top" src="{{ $route->image }}"  height=200 width=200 alt="Card image cap">
+  <img class="card-img-top" src="{{ $route->images }}"  height=200 width=200 alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{ $route->name }}</h5>
     <p class="card-text">{{ $route->description }}</p>

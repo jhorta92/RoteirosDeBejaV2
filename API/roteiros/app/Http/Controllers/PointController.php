@@ -33,5 +33,28 @@ class PointController extends Controller
         return new PointResource($p);
    
     }
+
+
+    public function store(Request $request)
+    {
+        $point = Route::create($request->all());
+
+        return response()->json($point, 201);
+    }
+
+    public function update(Request $request, Point $point)
+    {
+        $point->update($request->all());
+
+        return response()->json($point, 200);
+    }
+
+
+    public function destroy(Point $point)
+      {
+          $point->delete();
+  
+          return response()->json(null, 204);
+      }
     
 }

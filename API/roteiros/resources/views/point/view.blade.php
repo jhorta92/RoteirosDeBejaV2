@@ -6,13 +6,16 @@
                 <h2>Detalhe do ponto</h2>
         </div>
         <div class="col-lg-1">
-            <a class="btn btn-primary" href="{{ url('point') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ url('points') }}"> Voltar</a>
         </div>
     </div>
+    
     <table class="table table-bordered">
-    <tr>
-            <th>ID da rota:</th>
-            <td>{{ $point->routes_id }}</td>
+        <tr>
+        @foreach($points as $point)
+            <th>Nome da rota:</th>
+            <td>{{ $point->routes->name }}</td>
+        @endforeach
         </tr>
         <tr>
             <th>Nome:</th>
@@ -20,7 +23,7 @@
         </tr>
         <tr>
             <th>Descriçao:</th>
-            <td>{{ Str::limit($point->description, 20) }}</td>
+            <td>{{ $point->description }}</td>
         </tr>
         <tr>
             <th>Imagem:</th>

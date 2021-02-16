@@ -16,8 +16,8 @@ class PointWebController extends Controller
     public function index()
     {
         //
-        $points = Point::all();
-        return view('point.list', compact('points'));
+        $points = Point::with('routes')->get();
+        return view('point.list', compact('points',$points));
     }
 
     /**
@@ -46,7 +46,6 @@ class PointWebController extends Controller
             'name'=>'required',
             'description'=> 'required',
             'images' => 'required',
-            'videoUrl' => 'required',
             'coordinate' => 'required'
 
         ]);
@@ -74,8 +73,8 @@ class PointWebController extends Controller
      */
     public function show(Point $point)
     {
-        //
-        return view('point.view',compact('point'));
+        $points = Point::with('routes')->get();
+        return view('point.view',compact('points',$points));
     }
 
     /**
@@ -86,8 +85,8 @@ class PointWebController extends Controller
      */
     public function edit(Point $point)
     {
-        //
-        return view('point.edit',compact('point'));
+        $routes = Route::all(['id','name']);
+        return view('point.edit',compact('point','routes'));
 
     }
 
@@ -132,7 +131,6 @@ class PointWebController extends Controller
      */
     public function destroy(Point $point)
     {
-        //
         $point->delete();
         return redirect('/points')->with('success', 'Ponto de interesse eliminado com sucesso');
     }

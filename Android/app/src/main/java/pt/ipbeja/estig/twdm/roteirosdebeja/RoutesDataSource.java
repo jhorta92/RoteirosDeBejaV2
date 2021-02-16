@@ -17,12 +17,20 @@ public class RoutesDataSource {
             .build();
 
     private static RoutesService routesService;
+    private static PointService pointsService;
 
     public static RoutesService getRoutesService() {
         if (routesService == null) {
             routesService = retrofit.create(RoutesService.class);
         }
         return routesService;
+    }
+
+    public static PointService getPointService() {
+        if (pointsService == null) {
+            pointsService = retrofit.create(PointService.class);
+        }
+        return pointsService;
     }
 
     /* public static void update(int position, Route route) {

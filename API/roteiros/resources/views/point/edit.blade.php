@@ -5,7 +5,7 @@
             <h2>Editar Ponto de Interesse</h2>
         </div>
         <div class="col-lg-1">
-            <a class="btn btn-primary" href="{{ url('points') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ url('points') }}"> Voltar</a>
         </div>
     </div>
  
@@ -23,8 +23,12 @@
         @method('PATCH')
         @csrf
         <div class="form-group">
-            <label for="routes_id">Route id:</label>
-            <input type="text" class="form-control" id="routes_id" placeholder="Enter  route" name="routes_id" >
+                <label for="routes_id">Rota:</label>
+                <select class="form-control" id="routes_id" placeholder="Enter  Name" name="routes_id">
+                    @foreach($routes as $route)
+                        <option value="{{$route->id}}">{{$route->name}}</option>
+                    @endforeach
+                </select>
         </div>
         <div class="form-group">
             <label for="name">Nome:</label>

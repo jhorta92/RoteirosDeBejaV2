@@ -1,8 +1,11 @@
 package pt.ipbeja.estig.twdm.roteirosdebeja;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +28,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private Route route;
     private long id;
+    private RoutesAdapter adapter;
     private RoutesService routesService;
 
     public static void startActivity(Context context, long id) {
@@ -41,7 +45,11 @@ public class DetailsActivity extends AppCompatActivity {
         TextView textViewName = findViewById(R.id.textViewName);
         TextView textViewDescription = findViewById(R.id.textView);
         ImageView imageSlider = findViewById(R.id.imageSlider);
+
+
         //this.routesDao = AppDatabase.getRoutesService().getRoutesService();
+
+        this.adapter = new RoutesAdapter(this);
 
 
         Bundle bundle = getIntent().getExtras();
@@ -51,6 +59,8 @@ public class DetailsActivity extends AppCompatActivity {
         if (this.id > 0) {
             RoutesService service = RoutesDataSource.getRoutesService();
             Call<BaseResponse<Route>> call = service.getRouteById(this.id);
+
+
             call.enqueue(new Callback<BaseResponse<Route>>() {
                 @Override
                 public void onResponse(Call<BaseResponse<Route>> call, Response<BaseResponse<Route>> response) {
@@ -59,16 +69,29 @@ public class DetailsActivity extends AppCompatActivity {
                         textViewName.setText(route.getName());
                         textViewDescription.setText(route.getDescription());
                         Glide.with(DetailsActivity.this).load(route.getImages()).into(imageSlider);
+                        final Button btn = findViewById(R.id.maps);
+
+                        btn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                PointsActivity.startActivity(DetailsActivity.this, id);
+                            }
+                        });
+
+
                     } else {
-                        Log.e("PlanetDetailsActivity", "Error ocurred");
+                        Log.e("DetailsActivity", "Error ocurred");
                     }
                 }
 
                 @Override
                 public void onFailure(Call<BaseResponse<Route>> call, Throwable t) {
-                    Log.e("PlanetDetailsActivity", "Exception", t);
+                    Log.e("DetailsActivity", "Exception", t);
                 }
-            });
+            }
+            );
+
+
         } else {
             finish();
         }

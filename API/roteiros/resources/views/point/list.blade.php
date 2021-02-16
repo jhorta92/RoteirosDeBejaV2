@@ -5,7 +5,7 @@
                 <h2>Pontos de Interesse</h2>
         </div>
         <div class="col-lg-1">
-            <a class="btn btn-success" href="{{ route('points.create') }}">Add</a>
+            <a class="btn btn-success" href="{{ route('points.create') }}">Adicionar</a>
         </div>
     </div>
  
@@ -17,15 +17,15 @@
  
     <table class="table table-bordered">
         <tr>
-            <th>No</th>
-            <th>ID rota</th>
-            <th>nome</th>
-            <th>descriçao</th>
-            <th>imagen</th>
-            <th>video</th>
-            <th>coordenadas</th>
+            <th>Nº</th>
+            <th>Rota</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Imagem</th>
+            <th>Vídeo</th>
+            <th>Coordenadas</th>
 
-            <th width="280px">Action</th>
+            <th width="280px"></th>
         </tr>
         @php
             $i = 0;
@@ -33,9 +33,9 @@
         @foreach ($points as $point)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $point->routes_id }}</td>
+                <td>{{ $point->routes->name }}</td>
                 <td>{{ $point->name }}</td>
-                <td>{{ $point->description }}</td>
+                <td>{{ Str::limit($point->description, 30) }}</td>
                 <td><img src="{{ $point->images }}" alt="" height=100 width=100></td>
                 <td>{{ $point->videoUrl }}</td>
                 <td>{{ $point->coordinate }}</td>

@@ -20,8 +20,7 @@ public class MainActivity extends AppCompatActivity {
     // Criamos o adapter como variável de instância para permitir a sua utilização em todos os métodos da instância (nomeadamente no onCreate e onResume)
     private RoutesAdapter adapter;
     private RoutesService routesService;
-    //private static String url_all_routes = "http://localhost:8000/api/routes";
-    //private static String url_all_points = "http://localhost:8000/api/routes";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

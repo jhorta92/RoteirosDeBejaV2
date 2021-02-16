@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Route::resource('routes', RouteController::class);
-Route::resource('routes', RouteWebController::class);
-Route::resource('points', PointWebController::class);
-
+Route::resource('routes', RouteWebController::class)->middleware("auth");
+Route::resource('points', PointWebController::class)->middleware("auth");
+Auth::routes();
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('admin');
+})->middleware("auth");
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

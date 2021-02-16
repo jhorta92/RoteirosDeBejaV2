@@ -19,10 +19,10 @@
 <table class="table table-bordered">
 <thead class="thead">
 <tr>
-<th>No</th>
+<th>Nº</th>
 <th>Nome</th>
 <th>Descrição</th>
-<th>Image</th>
+<th>Imagem</th>
 <th></th>
 </tr>
 </thead>
@@ -34,7 +34,7 @@ $i = 0;
 <tr>
 <td>{{ ++$i }}</td>
 <td>{{ $route->name }}</td>
-<td>{{ $route->description }}</td>
+<td>{{Str::limit($route->description, 30) }}</td>
 <td><img src="{{ $route->images }}" alt="" height=100 width=100></td>
 <td>
 <form action="{{ route('routes.destroy',$route->id) }}" method="POST">
@@ -42,7 +42,7 @@ $i = 0;
 <a class="btn btn-primary" href="{{ route('routes.edit',$route->id) }}">Editar</a>
 @csrf
 @method('DELETE')
-<button type="submit" class="btn btn-danger">Apagar</button>
+<button type="submit" class="btn btn-danger">Eliminar</button>
 </form>
 </td>
 </tr>

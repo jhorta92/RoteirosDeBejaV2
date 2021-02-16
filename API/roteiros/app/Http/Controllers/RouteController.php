@@ -17,22 +17,46 @@ class RouteController extends Controller
      */
     public function index()
     {
-   
-        //
         $route = Route::all();
         return RouteResource::collection($route);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-        $route = Route::findOrFail($id);
-        return new RouteResource($route);
-    }
+    public function createRoute(Request $request) {
+        $route = new Route;
+        $route->name = $request->name;
+        $route->description = $request->description;
+        $route->videoUrl = $request->videoUrl;
+        $route->save();
+    
+        return response()->json([
+            "message" => "student record created"
+        ], 201);
+      }
+
+      public function show($id)
+      {
+          $route = Route::findOrFail($id);
+          return new RouteResource($route);
+      }
+  
+      public function store(Request $request)
+      {
+          $route = Route::create($request->all());
+  
+          return response()->json($route, 201);
+      }
+  
+      public function update(Request $request, Route $route)
+      {
+          $route->update($request->all());
+  
+          return response()->json($route, 200);
+      }
+  
+      public function destroy(Route $route)
+      {
+          $route->delete();
+  
+          return response()->json(null, 204);
+      }
 }

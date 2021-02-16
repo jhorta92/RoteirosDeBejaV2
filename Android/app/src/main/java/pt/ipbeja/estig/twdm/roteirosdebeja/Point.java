@@ -11,7 +11,7 @@ public class Point {
     @PrimaryKey(autoGenerate = true)
     private long id;
     @Ignore
-    private long id_route;
+    private long routes_id;
     @Ignore
     private String name;
     @Ignore
@@ -20,64 +20,46 @@ public class Point {
     private List<String> images;
     @Ignore
     private String coordinate;
-    private boolean isSeen;
+    private String videoUrl;
 
     public Point() {}
 
     @Ignore
-    public Point(long id, long id_route, String name, String description, List<String> images, String coordinate, boolean isSeen) {
+    public Point(long id, long routes_id, String name, String description, List<String> images, String coordinate, String videoUrl) {
         this.id = id;
-        this.id = id_route;
+        this.routes_id = routes_id;
         this.name = name;
         this.description = description;
         this.images = images;
         this.coordinate = coordinate;
-        this.isSeen = isSeen;
+        this.videoUrl = videoUrl;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getId_route() {
-        return id;
-    }
-
-    public void setId_route(long id) {
-        this.id = id;
+    public long getRoutes_id() {
+        return routes_id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public List<String> getImages() {
+        return images;
     }
 
-    public List<String> getImages() { return images;
-    }
-    public void setImages(List<String> images) {
-        this.images = images;
+    public String getCoordinate() {
+        return coordinate;
     }
 
-    public String getCoordinate() { return coordinate; }
-
-    public void setCoordinate(String coordinate) { this.coordinate = coordinate; }
-
-    public boolean isSeen() { return this.isSeen; }
-
-    public void setSeen(boolean isSeen) { this.isSeen = isSeen; }
+    public String getVideoUrl() {
+        return videoUrl;
+    }
 }

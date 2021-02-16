@@ -42,14 +42,12 @@ public class PointsAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(this.context).inflate(R.layout.list_row, parent, false);
+            convertView = LayoutInflater.from(this.context).inflate(R.layout.list_row_poits, parent, false);
         }
 
         Point point = this.getItem(position);
-        ImageView imageViewLogo = convertView.findViewById(R.id.imageViewLogo);
-        ImageView imageViewFav = convertView.findViewById(R.id.imageViewFav);
-        ImageView imageViewVisited = convertView.findViewById(R.id.imageView2);
-        TextView textViewName = convertView.findViewById(R.id.textViewName);
+        ImageView imageViewLogo = convertView.findViewById(R.id.imageView);
+        TextView textViewName = convertView.findViewById(R.id.textView2);
 
         textViewName.setText(point.getName());
 
@@ -57,11 +55,7 @@ public class PointsAdapter extends BaseAdapter {
             Glide.with(context).load(point.getImages().get(0)).into(imageViewLogo);
         }
 
-        if (point.isSeen()) {
-            imageViewVisited.setVisibility(View.VISIBLE);
-        } else {
-            imageViewVisited.setVisibility(View.INVISIBLE);
-        }
+
 
 //        if (point.isFav()) {
 //            imageViewFav.setVisibility(View.VISIBLE);
