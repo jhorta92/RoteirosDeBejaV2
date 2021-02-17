@@ -2,6 +2,7 @@ package pt.ipbeja.estig.twdm.roteirosdebeja;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,8 +13,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,33 +47,36 @@ public class PointsDetails extends AppCompatActivity {
         }
         if (this.id > 0) {
             PointService service = RoutesDataSource.getPointService();
-            Call<BaseResponse<List<Point>>> call = service.getPoints();
+            Call<BaseResponse<Point>> call = service.getPointById(this.id);
 
-            call.enqueue(new Callback<BaseResponse<List<Point>>>() {
+            call.enqueue(new Callback<BaseResponse<Point>>() {
                              @Override
-                             public void onResponse(Call<BaseResponse<List<Point>>> call, Response<BaseResponse<List<Point>>> response) {
+                             public void onResponse(Call<BaseResponse<Point>> call, Response<BaseResponse<Point>> response) {
                                  if (response.isSuccessful()) {
                                      Point point = (Point) response.body().getData();
                                      textViewName.setText(point.getName());
                                      Glide.with(PointsDetails.this).load(point.getImages()).into(imageSlider);
                                      textViewDescription.setText(point.getDescription());
                                      final Button btn = findViewById(R.id.maps);
-
                                      btn.setOnClickListener(new View.OnClickListener() {
                                          @Override
                                          public void onClick(View v) {
-                                             PointsDetails.startActivity(PointsDetails.this, id);
+                                             // Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
+                                             Uri gmmIntentUri = Uri.parse(point.getCoordinate());
+                                             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                                             mapIntent.setPackage("com.google.android.apps.maps");
+                                             if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                                                 startActivity(mapIntent);
+                                             }
                                          }
                                      });
-
-
                                  } else {
                                      Log.e("DetailsActivity", "Error ocurred");
                                  }
                              }
 
                              @Override
-                             public void onFailure(Call<BaseResponse<List<Point>>> call, Throwable t) {
+                             public void onFailure(Call<BaseResponse<Point>> call, Throwable t) {
                                  Log.e("DetailsActivity", "Exception", t);
                              }
                          }

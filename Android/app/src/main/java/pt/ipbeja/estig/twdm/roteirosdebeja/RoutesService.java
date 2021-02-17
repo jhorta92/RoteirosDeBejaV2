@@ -14,4 +14,7 @@ public interface RoutesService {
 
     @GET("route/{id}")
     Call<BaseResponse<Route>> getRouteById(@Path("id")long id);
+
+    @GET("route/{id}/points")
+    Call<BaseResponse<List<Point>>> getPointsByRoute(@Path("id")long routeId);
 }

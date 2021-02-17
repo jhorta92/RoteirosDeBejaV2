@@ -51,8 +51,8 @@ public class PointsAdapter extends BaseAdapter {
 
         textViewName.setText(point.getName());
 
-        if (point.getImages().size() > 0) {
-            Glide.with(context).load(point.getImages().get(0)).into(imageViewLogo);
+        if (point.getImages() != null && !point.getImages().isEmpty()) {
+            Glide.with(context).load(point.getImages()).into(imageViewLogo);
         }
 
 

@@ -4,8 +4,6 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import java.util.List;
-
 @Entity
 public class Point {
     @PrimaryKey(autoGenerate = true)
@@ -17,7 +15,7 @@ public class Point {
     @Ignore
     private String description;
     @Ignore
-    private List<String> images;
+    private String images;
     @Ignore
     private String coordinate;
     private String videoUrl;
@@ -25,7 +23,7 @@ public class Point {
     public Point() {}
 
     @Ignore
-    public Point(long id, long routes_id, String name, String description, List<String> images, String coordinate, String videoUrl) {
+    public Point(long id, long routes_id, String name, String description, String images, String coordinate, String videoUrl) {
         this.id = id;
         this.routes_id = routes_id;
         this.name = name;
@@ -51,7 +49,7 @@ public class Point {
         return description;
     }
 
-    public List<String> getImages() {
+    public String getImages() {
         return images;
     }
 

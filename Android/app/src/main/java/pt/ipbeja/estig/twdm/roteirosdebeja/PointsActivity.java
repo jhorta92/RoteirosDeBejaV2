@@ -25,6 +25,7 @@ public class PointsActivity extends AppCompatActivity {
     private PointsAdapter adapterPoints;
     private RoutesService routesService;
     private PointService pointsService;
+    private long routeId = -1;
 
     public static void startActivity(Context context, long id) {
         Intent intent = new Intent(context, PointsActivity.class);
@@ -36,8 +37,15 @@ public class PointsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new);
-        ListView listView = findViewById(R.id.listview5);
+
+        if (getIntent().getExtras() != null) {
+            this.routeId = getIntent().getExtras().getLong(KEY_ID, -1);
+        }
+
+        if (this.routeId == -1) finish();
+
+        setContentView(R.layout.activity_points);
+        ListView listView = findViewById(R.id.listview);
         this.adapterPoints = new PointsAdapter(this);
         listView.setAdapter(this.adapterPoints);
 
@@ -55,8 +63,8 @@ public class PointsActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        PointService service = RoutesDataSource.getPointService();
-        Call<BaseResponse<List<Point>>> call = service.getPoints();
+        RoutesService service = RoutesDataSource.getRoutesService();
+        Call<BaseResponse<List<Point>>> call = service.getPointsByRoute(this.routeId);
         call.enqueue(new Callback<BaseResponse<List<Point>>>() {
             @Override
             public void onResponse(Call<BaseResponse<List<Point>>> call, Response<BaseResponse<List<Point>>> response) {
@@ -76,7 +84,7 @@ public class PointsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<BaseResponse<List<Point>>> call, Throwable t) {
-
+                t.printStackTrace();
             }
 
 
