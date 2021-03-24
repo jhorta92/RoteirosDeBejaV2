@@ -11,8 +11,6 @@ funcionalidades da aplicaçao
 -entrado nos detalhes do ponto é apresentado imagens slash, descriçao do ponto botao para ver a localizaçao e dar uma pontuaçao ao ponto
 -opçao de ver roteiro por ordem ou vista livre
 
-
-
 funcionalidades web
 -login administrador
 -adicionar rota
@@ -21,3 +19,22 @@ funcionalidades web
 -associar poto de interesse a rota 
 -lista dos potos de interesse pertencentes a uma rota (imagens da rota,descriçao,opçoes)
 -opcçoes de editar, eliminar, alterar ponto e detalhes
+
+funcionalidades api 
+-estrutura resposta json rotas:
+{"id":1,
+"name":"rota do castelo",
+"description":"esta rota mostra o castelo de beja e uma parte do caminho pelas suas moralhas e arcos romanos",
+"images":"https:\/\/i.ytimg.com\/vi\/foyTMEnkco4\/hqdefault.jpg",
+"videoUrl":"sadagdfsdasdasdfgdfhd"
+}
+
+- estrutura resposta json pontos de interesse
+{"id":1,
+"id_route":1,
+"name":"castelo",
+"description":"mostra o castelo de beja e suas moralhas e arcos romanos",
+"images":"https:\/\/i.ytimg.com\/vi\/foyTMEnkco4\/hqdefault.jpg",
+"videoUrl":"sadagdfsdasdasdfgdfhd",
+"cordenate"0013:589:479:18
+}
