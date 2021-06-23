@@ -16,6 +16,7 @@
 <ul class="nav navbar-nav">
 <li><a href="{{ url('routes') }}">Rotas</a></li>
 <li><a href="{{ url('points') }}">Pontos de interesse</a></li>
+<li><a href="{{ url('events') }}">Eventos</a></li>
 @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">

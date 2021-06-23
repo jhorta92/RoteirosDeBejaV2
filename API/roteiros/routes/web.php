@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 //Route::resource('routes', RouteController::class);
+Route::resource('events', EventWebController::class)->middleware("auth");
 Route::resource('routes', RouteWebController::class)->middleware("auth");
 Route::resource('points', PointWebController::class)->middleware("auth");
 Auth::routes();

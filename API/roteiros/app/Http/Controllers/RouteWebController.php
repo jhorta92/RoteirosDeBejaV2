@@ -28,7 +28,7 @@ class RouteWebController extends Controller
      */
     public function create()
     {
-        //
+
         return view('route.create');
         
     }
@@ -58,7 +58,7 @@ class RouteWebController extends Controller
         ]);
  
         $route->save();
-        return redirect('/routes')->with('success', 'Route has been added');
+        return redirect('/routes')->with('success', 'nova rota adicionada');
     }
 
     /**
@@ -69,7 +69,7 @@ class RouteWebController extends Controller
      */
     public function show(Route $route)
     {
-        //
+        
         return view('route.view',compact('route'));
     }
 
@@ -81,7 +81,7 @@ class RouteWebController extends Controller
      */
     public function edit(Route $route)
     {
-        //
+        
         return view('route.edit',compact('route'));
     }
 
@@ -94,7 +94,7 @@ class RouteWebController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
         $request->validate([
             'txtName'=>'required',
             'txtDescription'=> 'required',

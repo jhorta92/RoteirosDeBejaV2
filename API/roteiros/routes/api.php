@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::apiResource('route',RouteController::class);
+Route::apiResource('event',EventController::class);
 Route::apiResource('route.points',PointController::class)->shallow();

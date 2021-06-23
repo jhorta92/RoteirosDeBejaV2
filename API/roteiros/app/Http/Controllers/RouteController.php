@@ -29,7 +29,7 @@ class RouteController extends Controller
         $route->save();
     
         return response()->json([
-            "message" => "student record created"
+            "message" => "route record created"
         ], 201);
       }
 
