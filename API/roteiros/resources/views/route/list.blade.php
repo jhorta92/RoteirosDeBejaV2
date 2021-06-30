@@ -16,7 +16,7 @@
 </div>
 @endif
 
-<table class="table table-bordered">
+<table id= "myTable" class="table table-bordered">
 <thead class="thead">
 <tr>
 <th>Nº</th>
@@ -35,7 +35,7 @@ $i = 0;
 <td>{{ ++$i }}</td>
 <td>{{ $route->name }}</td>
 <td>{{Str::limit($route->description, 30) }}</td>
-<td><img src="{{ $route->images }}" alt="" height=100 width=100></td>
+<td><img src="{{ $route->images }}" alt="" height=150 width=150></td>
 <td>
 <form action="{{ route('routes.destroy',$route->id) }}" method="POST">
 <a class="btn btn-info" href="{{ route('routes.show',$route->id) }}">Detalhe</a>
@@ -50,3 +50,9 @@ $i = 0;
 </tbody>
 </table>
 @endsection
+
+<!-- <script type="text/javascript">
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script> -->

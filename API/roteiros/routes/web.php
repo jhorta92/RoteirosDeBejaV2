@@ -20,7 +20,7 @@ Route::resource('routes', RouteWebController::class)->middleware("auth");
 Route::resource('points', PointWebController::class)->middleware("auth");
 Auth::routes();
 Route::get('/', function () {
-    return view('admin');
+    return view('home');
 })->middleware("auth");
 
 

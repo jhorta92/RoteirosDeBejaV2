@@ -74,7 +74,7 @@ class PointWebController extends Controller
     public function show(Point $point)
     {
         $points = Point::with('routes')->get();
-        return view('point.view',compact('points',$points));
+        return view('point.view',compact('point',$points));
     }
 
     /**

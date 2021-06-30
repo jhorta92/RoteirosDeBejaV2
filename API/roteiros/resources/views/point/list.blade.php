@@ -36,8 +36,8 @@
                 <td>{{ $point->routes->name }}</td>
                 <td>{{ $point->name }}</td>
                 <td>{{ Str::limit($point->description, 30) }}</td>
-                <td><img src="{{ $point->images }}" alt="" height=100 width=100></td>
-                <td>{{ $point->videoUrl }}</td>
+                <td><img src="{{ $point->images }}" alt="" height=150 width=150></td>
+                <td>{{ Str::limit($point->videoUrl, 20) }}</td>
                 <td>{{ $point->coordinate }}</td>
                 <td>
                     <form action="{{ route('points.destroy',$point->id) }}" method="POST">
@@ -52,3 +52,4 @@
         @endforeach
     </table>
 @endsection
+

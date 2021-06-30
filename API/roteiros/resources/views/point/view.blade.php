@@ -12,10 +12,9 @@
     
     <table class="table table-bordered">
         <tr>
-        @foreach($points as $point)
             <th>Nome da rota:</th>
             <td>{{ $point->routes->name }}</td>
-        @endforeach
+        
         </tr>
         <tr>
             <th>Nome:</th>
@@ -37,6 +36,5 @@
             <th>Coordenadas:</th>
             <td>{{ $point->coordinate }}</td>
         </tr>
- 
     </table>
 @endsection
